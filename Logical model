@@ -1,0 +1,129 @@
+Customer (CustomerID, SSN, FirstName, LastName, BirthDate, JobTitle)  
+
+Primary Key (CustomerID)  
+
+ 
+
+CustomerEmail (CustomerID, Email)  
+
+Primary Key (CustomerID, Email)  
+
+Foreign Key (CustomerID) References Customer (CustomerID)  
+
+ 
+
+CustomerPhoneNumber (CustomerID, PhoneNumber)  
+
+Primary Key (CustomerID, PhoneNumber)  
+
+Foreign Key (CustomerID) References Customer (CustomerID)  
+
+ 
+
+Service (ServiceID, ChildCare, AdultCare)  
+
+Primary Key (ServiceID)  
+
+ 
+
+Subscription ( SubscriptionID, ServiceID, Duration, Price )  
+
+Primary Key (SubscriptionID)  
+
+Foreign Key (ServiceID) References Service (ServiceID)   
+
+ 
+
+Client (ClientID, CustomerID, SSN, FirstName, LastName, BirthDate, Allergies, Surgeries, Medications, RelationWithClient)  
+
+Primary Key (ClientID)  
+
+Foreign Key (CustomerID) References Customer (CustomerID)  
+
+ 
+
+ClientService (ClientID, ServiceID, StartDate, EndDate)  
+
+Primary Key (ClientID, ServiceID)  
+
+Foreign Key (ClientID) References Client (ClientID)  
+
+Foreign Key (ServiceID) References Service (ServiceID)  
+
+  
+
+CustomerSubscription (CustomerID, SubscriptionID, StartDate, EndDate)  
+
+Primary Key (CustomerID, SubscriptionID)  
+
+Foreign Key (CustomerID) References Customer (CustomerID)  
+
+Foreign Key (SubscriptionID) References Subscription (SubscriptionID)  
+
+  
+
+PaymentMethod (PaymentID, CustomerID, CardNum, ExpiryDate, SecurityCode)  
+
+Primary Key (PaymentID, CustomerID)  
+
+Foreign Key (CustomerID) References Customer (CustomerID)  
+
+ 
+
+PaymentMethodEPayment (PaymentID, CustomerID, EPayment)    
+
+Primary Key (PaymentID, EPayment)  
+
+Foreign Key (PaymentID) References PaymentMethod (PaymentID)  
+
+Foreign Key (CustomerID) References PaymentMethod (CustomerID)  
+
+  
+
+Employee (EmployeeID, SSN, FirstName, LastName, BirthDate, Degree, HireDate)  
+
+Primary Key (EmployeeID)  
+
+ 
+
+ 
+
+EmployeeSkill (SkillName, EmployeeID, SkillLevel)  
+
+Primary Key (SkillName, EmployeeID)  
+
+Foreign Key (EmployeeID) References Employee (EmployeeID)   
+
+ 
+
+Hourly Employee (EmployeeID, HourlyRate)  
+
+Primary Key (EmployeeID)  
+
+Foreign Key (EmployeeID) References Employee (EmployeeID)   
+
+ 
+
+SalariedEmployee (EmployeeID, Salary)  
+
+Primary Key (EmployeeID)  
+
+Foreign Key (EmployeeID) References Employee (EmployeeID)  
+
+ 
+
+Contractor (EmployeeID, ContractNum, BillingRate)  
+
+Primary Key (EmployeeID)   
+
+Foreign Key (EmployeeID) References Employee (EmployeeID)  
+
+ 
+
+EmployeeService (EmployeeID, ServiceID, NumOfHours )  
+
+Primary Key (EmployeeID, ServiceID)  
+
+Foreign Key (EmployeeID) References Employee (EmployeeID)  
+
+Foreign Key (ServiceID) References Service (Service)  
